@@ -1,0 +1,86 @@
+//
+//  ContentView.swift
+//  TabView
+//
+//  Created by Alexandr on 09.01.2024.
+//
+
+import SwiftUI
+
+struct MainTabView: View {
+    @State  var tabSelected = 0
+    var body: some View {
+        
+        TabView(selection: $tabSelected) {
+            HomeView(tabSelection: $tabSelected)
+            //MARK: - First Tab
+                .tabItem {
+                    Image(systemName: "house.fill")
+                    Text("Home")
+                    }
+                        .tag(0)
+                    ZStack {
+                        Color.blue.ignoresSafeArea(edges: .top)
+                        Text("Screen NetWork")
+                            .font(.largeTitle)
+                            .padding()
+                        
+                    }
+            //MARK: - Second Tab
+                    .tabItem {
+                        Image(systemName: "globe")
+                        Text("NetWork")
+                        
+                    }
+                        .tag(1)
+            //MARK: - Thrid Tab
+                    Text("Contacts Screen")
+                .font(.largeTitle)
+                .padding()
+                        .tabItem {
+                            Image(systemName: "person.fill")
+                            Text("Contacts")
+                        }
+                        .tag(2)
+                }
+                .font(.headline)
+                .accentColor(.red)
+        }
+    }
+    
+    struct MainTabView_Previews: PreviewProvider {
+        static var previews: some View {
+            MainTabView()
+            
+        }
+    }
+    
+    //MARK: - Main Screan
+    struct HomeView: View {
+       @Binding var tabSelection: Int
+        var body: some View {
+            ZStack {
+                Color.red.ignoresSafeArea(edges: .top)
+                VStack{
+                    Text("Main Screen")
+                        .font(.largeTitle)
+                        .padding()
+                    
+                    //MARK: - Button Contacts
+                    Button {
+                        tabSelection = 2
+                        
+                    } label : {
+                        Text("Contacts")
+                            .font(.headline)
+                            .padding()
+                            .padding(.horizontal)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                    }
+                    
+                }
+            }
+        }
+    }
+
